@@ -5,8 +5,9 @@ RUN apk add --no-cache make
 RUN go mod tidy
 RUN make build
 
-from golang:alpine3.19 as deploy
-COPY from=build /usr/src/app/dist ./dist
-EXPOSE 8080
+from build as deploy
+COPY --from=build /usr/src/app/dist ./dist
+COPY --from=build /usr/src/app/makefile ./makefile
+EXPOSE 3333
 
-CMD ["./dist/main"]
+CMD ["make", "start"]

@@ -1,5 +1,7 @@
-version: '3'
+version: '3.7'
+
 services:
+
   postgres:
     image: postgres:16.2-alpine3.19
     container_name: db-nlw-devops
@@ -9,8 +11,24 @@ services:
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - POSTGRES_DB=${POSTGRES_DB}
+    volumes:
+      - "db:/var/lib/postgresql/data"
     networks:
           - nlw
-  networks:
-    nlw:
-      driver: bridge
+  api-nlw:
+    build:
+      context: .
+    container_name: api-go-nlw
+    ports:
+      - 3001:3333
+    environment:
+      - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
+    depends_on:
+      - postgres
+    networks:
+      - nlw
+networks:
+  nlw:
+    driver: bridge
+volumes:
+  db:
