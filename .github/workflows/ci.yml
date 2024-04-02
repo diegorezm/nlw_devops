@@ -23,8 +23,6 @@ jobs:
         with:
             path: ~/.docker/cache  # Path to cache Docker layers
             key: ${{ runner.os }}-docker-${{ hashFiles('**/Dockerfile') }}  # Cache key based on OS, Dockerfile content
-        restore-keys: |
-            ${{ runner.os }}-docker- 
 
       - name: Build docker image
         run: docker build -t diegorezm/nlw_devops:${{ steps.generate_sha.outputs.sha }} .
