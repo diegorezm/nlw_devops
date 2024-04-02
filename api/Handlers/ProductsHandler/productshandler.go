@@ -13,15 +13,15 @@ import (
 )
 
 const (
-	SELECT_ALL_PRODUCTS         = "SELECT id, entity_id, sold, created_at, updated_at FROM Products"
+	SELECT_ALL_PRODUCTS         = "SELECT id, entity_id, sold, created_at, updated_at FROM products"
 	SELECT_ALL_PRODUCT_ENTITIES = "SELECT id, name, created_at, updated_at FROM ProductEntity"
-	SELECT_PRODUCT_BY_ID        = "SELECT id, entity_id, sold, created_at, updated_at FROM Products WHERE id=?;"
+	SELECT_PRODUCT_BY_ID        = "SELECT id, entity_id, sold, created_at, updated_at FROM products WHERE id=?;"
 	SELECT_PRODUCT_ENTITY_BY_ID = "SELECT id, name, created_at, updated_at FROM ProductEntity WHERE id=?;"
-	INSERT_PRODUCT              = "INSERT INTO Products (entity_id) VALUES(?);"
+	INSERT_PRODUCT              = "INSERT INTO products (entity_id) VALUES(?);"
 	INSERT_PRODUCT_ENTITY       = "INSERT INTO ProductEntity (name) VALUES(?);"
 	UPDATE_PRODUCT_ENTITY       = "UPDATE ProductEntity SET name=? , WHERE id=?;"
-	UPDATE_PRODUCT_SOLD_ROW     = "UPDATE Products SET sold=?, WHERE id=?"
-	DELETE_PRODUCT              = "DELETE FROM Products WHERE id=?;"
+	UPDATE_PRODUCT_SOLD_ROW     = "UPDATE products SET sold=?, WHERE id=?"
+	DELETE_PRODUCT              = "DELETE FROM products WHERE id=?;"
 	DELETE_PRODUCT_ENTITY       = "DELETE FROM ProductEntity WHERE id=?;"
 	LAYOUT                      = "2006-01-02T15:04:05Z"
 )
