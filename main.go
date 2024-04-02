@@ -34,11 +34,11 @@ func main() {
 	if err != nil {
 		log.Fatal(err.Error())
 	}
-  user := os.Getenv("POSTGRES_USER")
-  password := os.Getenv("POSTGRES_PASSWORD")
-  dbname := os.Getenv("POSTGRES_DB")
-  host := os.Getenv("POSTGRES_HOST")
-	db := db.NewDatabse(user,password,host,dbname)
+	user := os.Getenv("POSTGRES_USER")
+	password := os.Getenv("POSTGRES_PASSWORD")
+	dbname := os.Getenv("POSTGRES_DB")
+	host := os.Getenv("POSTGRES_HOST")
+	db := db.NewDatabse(user, password, host, dbname)
 	r := gin.Default()
 	sh := ph.NewProductsHandler(db.Connection)
 
@@ -48,16 +48,12 @@ func main() {
 	})
 
 	r.GET("/products", sh.GetAllProducts)
-	r.GET("/products/entities", sh.GetAllProductEntities)
 	r.GET("/products/:id", sh.GetProductById)
-	r.GET("/products/entities/:id", sh.GetProductEntityById)
 	r.POST("/products", sh.CreateNewProduct)
-	r.POST("/products/entities", sh.CreateNewProductEntity)
 	r.DELETE("/products/:id", sh.DeleteProductById)
-	r.DELETE("/products/entities/:id", sh.DeleteProductEntityById)
 
 	go func() {
-		r.Run() // :8080
+		r.Run()
 	}()
 
 	// setup chan to capture the signal

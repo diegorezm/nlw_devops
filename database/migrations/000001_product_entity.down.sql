@@ -1,1 +1,1 @@
-DROP TABLE ProductEntity;
+DROP TABLE products;
