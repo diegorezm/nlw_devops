@@ -18,7 +18,8 @@ jobs:
           SHA=$(echo $GITHUB_SHA | head -c7)
           echo "sha=${SHA}" >> $GITHUB_OUTPUT
 
-      - uses: actions/cache@v3
+      - name: docker cache
+        uses: actions/cache@v3
         with:
             path: ~/.docker/cache  # Path to cache Docker layers
             key: ${{ runner.os }}-docker-${{ hashFiles('**/Dockerfile') }}  # Cache key based on OS, Dockerfile content
