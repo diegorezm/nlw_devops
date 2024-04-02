@@ -14,11 +14,10 @@ type Databse struct {
 }
 
 const (
-	host = "localhost"
 	port = 5432
 )
 
-func NewDatabse(user, password, dbname string) *Databse {
+func NewDatabse(user, password, host,dbname string) *Databse {
 	psqlInfo := fmt.Sprintf("postgresql://%s:%s@%s:%d/%s?sslmode=disable", user, password, host, port, dbname)
 	db, err := sql.Open("postgres", psqlInfo)
 	if err != nil {
