@@ -34,11 +34,8 @@ func main() {
 	if err != nil {
 		log.Fatal(err.Error())
 	}
-	user := os.Getenv("POSTGRES_USER")
-	password := os.Getenv("POSTGRES_PASSWORD")
-	dbname := os.Getenv("POSTGRES_DB")
-	host := os.Getenv("POSTGRES_HOST")
-	db := db.NewDatabse(user, password, host, dbname)
+  dbUrl := os.Getenv("DATABASE_URL")
+	db := db.NewDatabse(dbUrl)
 	r := gin.Default()
 	sh := ph.NewProductsHandler(db.Connection)
 
