@@ -38,3 +38,12 @@ jobs:
           docker push diegorezm/nlw_devops:${{ steps.generate_sha.outputs.sha }}
           docker tag diegorezm/nlw_devops:${{ steps.generate_sha.outputs.sha }} diegorezm/nlw_devops:latest
           docker push diegorezm/nlw_devops:latest
+      - name: Update image tag
+        uses: fjogeleit/yaml-update-action@main
+        with: 
+          branch: main
+          valueFile: 'deploy/values.yaml'
+          propertyPath: 'image.tag'
+          value: ${{ steps.generate_sha.outputs.sha }}
+          commitChange: true
+          message: "Update image tag value helm"
