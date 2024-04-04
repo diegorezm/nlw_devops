@@ -1,4 +1,4 @@
-# Criar cluester kubernete
+# Criar cluster kubernete
 ```bash
 k3d cluster create nlw-unite --servers 2
 ```
