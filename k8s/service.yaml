@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: nlw_devops-service
+  labels:
+    app: nlw_devops
+
+spec:
+  selector:
+    app: nlw_devops
+  type: ClusterIP
+  ports:
+  - name: nlw_devops-service
+    port: 80
+    targetPort: 3333
+    protocol: TCP
